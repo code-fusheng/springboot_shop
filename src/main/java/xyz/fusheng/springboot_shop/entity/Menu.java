@@ -12,16 +12,18 @@ package xyz.fusheng.springboot_shop.entity;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Data
-public class MenuList {
+@Table(name = "sys_menu")
+public class Menu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String menuList;
+    private Integer menu_id;
+    private String menu_name;
+    private int menu_parent_id;
+    private int menu_level;
+    private String menu_controller;
+    private String menu_local;
 }
