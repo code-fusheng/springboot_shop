@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 import xyz.fusheng.springboot_shop.entity.User;
 import xyz.fusheng.springboot_shop.repository.UserRepository;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/user")
 public class UserHandler {
@@ -34,6 +36,58 @@ public class UserHandler {
             }
         }
         return false;
+    }
+
+    @GetMapping("/users/{page}/{size}")
+    public Page<User> findAll(@PathVariable("page") Integer page, @PathVariable("size") Integer size) {
+        PageRequest request1 = PageRequest.of(page, size);
+        return userRepository.findAll(request1);
+    }
+
+
+
+
+    /*-----------------------------------------------------------------------*/
+
+
+    @GetMapping("/findAll")
+    public List<User> findAll(){
+        return userRepository.findAll();
+    }
+
+    @PostMapping("/save")
+    public String save(@RequestBody User user) {
+        User result = userRepository.save(user);
+        if (result != null) {
+            return "success";
+        } else {
+            return "error";
+        }
+    }
+
+    @GetMapping("/findById/{id}")
+    public User findById(@PathVariable("id") Integer id) {
+        return userRepository.findById(id).get();
+    }
+
+
+
+
+
+
+    @PutMapping("/update")
+    public String update(@RequestBody User user) {
+        User result = userRepository.save(user);
+        if (result != null) {
+            return "success";
+        } else {
+            return "error";
+        }
+    }
+
+    @DeleteMapping("/deleteById/{id}")
+    public void deleteByID(@PathVariable("id") Integer id) {
+        userRepository.deleteById(id);
     }
 
 }
