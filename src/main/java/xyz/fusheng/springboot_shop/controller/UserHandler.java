@@ -18,6 +18,7 @@ import xyz.fusheng.springboot_shop.entity.User;
 import xyz.fusheng.springboot_shop.repository.UserRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
@@ -44,7 +45,15 @@ public class UserHandler {
         return userRepository.findAll(request1);
     }
 
-
+    @PutMapping("/users/update")
+    public String updateActive(@RequestBody User user) {
+        User result = userRepository.save(user);
+        if (result != null) {
+            return "success";
+        } else {
+            return "error";
+        }
+    }
 
 
     /*-----------------------------------------------------------------------*/
