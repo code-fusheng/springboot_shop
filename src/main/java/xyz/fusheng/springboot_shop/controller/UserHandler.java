@@ -57,8 +57,18 @@ public class UserHandler {
 
     @GetMapping("/users/query/{key}")
     public List queryUser(@PathVariable("key") String key){
-        List<Object> list =  userRepository.findAllByKey(key);
+        List<User> list =  userRepository.findAllByKey(key);
         return list;
+    }
+
+    @PostMapping("/user/users/save")
+    public String save(@RequestBody User user) {
+        User result = userRepository.save(user);
+        if (result != null) {
+            return "success";
+        } else {
+            return "error";
+        }
     }
 
     /*-----------------------------------------------------------------------*/
@@ -69,15 +79,7 @@ public class UserHandler {
         return userRepository.findAll();
     }
 
-    @PostMapping("/save")
-    public String save(@RequestBody User user) {
-        User result = userRepository.save(user);
-        if (result != null) {
-            return "success";
-        } else {
-            return "error";
-        }
-    }
+
 
     @GetMapping("/findById/{id}")
     public User findById(@PathVariable("id") Integer id) {

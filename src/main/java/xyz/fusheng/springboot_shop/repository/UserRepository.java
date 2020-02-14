@@ -21,5 +21,5 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
     @Query(value = "select * from sys_user u where u.name like %:key%",nativeQuery = true)
-    List<Object> findAllByKey(@Param("key") String key);
+    List<User> findAllByKey(@Param("key") String key);
 }
