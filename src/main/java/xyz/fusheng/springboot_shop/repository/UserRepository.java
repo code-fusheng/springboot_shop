@@ -10,10 +10,16 @@
  */
 package xyz.fusheng.springboot_shop.repository;
 
+import io.lettuce.core.dynamic.annotation.Param;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import xyz.fusheng.springboot_shop.entity.User;
 
+import java.util.List;
+
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
+    @Query(value = "select * from sys_user u where u.name like %:key%",nativeQuery = true)
+    List<Object> findAllByKey(@Param("key") String key);
 }

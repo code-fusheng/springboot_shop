@@ -16,9 +16,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 import xyz.fusheng.springboot_shop.entity.User;
 import xyz.fusheng.springboot_shop.repository.UserRepository;
+import xyz.fusheng.springboot_shop.utils.EntityUtils;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
@@ -55,6 +55,11 @@ public class UserHandler {
         }
     }
 
+    @GetMapping("/users/query/{key}")
+    public List queryUser(@PathVariable("key") String key){
+        List<Object> list =  userRepository.findAllByKey(key);
+        return list;
+    }
 
     /*-----------------------------------------------------------------------*/
 
