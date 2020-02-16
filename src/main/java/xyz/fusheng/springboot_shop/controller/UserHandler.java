@@ -55,8 +55,6 @@ public class UserHandler {
         }
     }
 
-
-
     @GetMapping("/users/query/{key}")
     public List queryUser(@PathVariable("key") String key){
         List<User> list =  userRepository.findAllByKey(key);
@@ -88,6 +86,10 @@ public class UserHandler {
         }
     }
 
+    @DeleteMapping("/users/deleteById/{id}")
+    public void deleteByID(@PathVariable("id") Integer id) {
+        userRepository.deleteById(id);
+    }
 
     /*-----------------------------------------------------------------------*/
 
@@ -99,9 +101,6 @@ public class UserHandler {
 
 
 
-    @DeleteMapping("/deleteById/{id}")
-    public void deleteByID(@PathVariable("id") Integer id) {
-        userRepository.deleteById(id);
-    }
+
 
 }
