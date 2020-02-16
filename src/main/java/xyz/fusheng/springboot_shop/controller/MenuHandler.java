@@ -39,7 +39,7 @@ public class MenuHandler {
         return menuService.bulidMenuList();
     }
 
-    @GetMapping("/findAll")
+    @GetMapping("/menus/findAll")
     public List<Menu> findAll(){
         return menuRepository.findAll();
     }
