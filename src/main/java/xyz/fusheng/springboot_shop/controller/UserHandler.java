@@ -55,13 +55,15 @@ public class UserHandler {
         }
     }
 
+
+
     @GetMapping("/users/query/{key}")
     public List queryUser(@PathVariable("key") String key){
         List<User> list =  userRepository.findAllByKey(key);
         return list;
     }
 
-    @PostMapping("/user/users/save")
+    @PostMapping("/users/save")
     public String save(@RequestBody User user) {
         User result = userRepository.save(user);
         if (result != null) {
@@ -70,6 +72,22 @@ public class UserHandler {
             return "error";
         }
     }
+
+    @GetMapping("/users/findById/{id}")
+    public User findById(@PathVariable("id") Integer id) {
+        return userRepository.findById(id).get();
+    }
+
+    @PutMapping("/users/edit")
+    public String update(@RequestBody User user) {
+        User result = userRepository.save(user);
+        if (result != null) {
+            return "success";
+        } else {
+            return "error";
+        }
+    }
+
 
     /*-----------------------------------------------------------------------*/
 
@@ -80,26 +98,6 @@ public class UserHandler {
     }
 
 
-
-    @GetMapping("/findById/{id}")
-    public User findById(@PathVariable("id") Integer id) {
-        return userRepository.findById(id).get();
-    }
-
-
-
-
-
-
-    @PutMapping("/update")
-    public String update(@RequestBody User user) {
-        User result = userRepository.save(user);
-        if (result != null) {
-            return "success";
-        } else {
-            return "error";
-        }
-    }
 
     @DeleteMapping("/deleteById/{id}")
     public void deleteByID(@PathVariable("id") Integer id) {
