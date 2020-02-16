@@ -78,7 +78,7 @@ public class UserHandler {
         return userRepository.findById(id).get();
     }
 
-    @PutMapping("/users/edit")
+    @PutMapping("/users/edit ")
     public String update(@RequestBody User user) {
         User result = userRepository.save(user);
         if (result != null) {
