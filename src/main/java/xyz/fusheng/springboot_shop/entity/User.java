@@ -15,8 +15,8 @@ import lombok.Data;
 import javax.persistence.*;
 import java.sql.Date;
 
-@Entity
 @Data
+@Entity
 @Table(name = "sys_user")
 public class User {
 
@@ -33,6 +33,6 @@ public class User {
     private String email;       // 邮箱
     private Date createTime;    // 创建时间
     private Date updateTime;    // 修改时间
-    private String role;        // 权限
+    private String role;        // 角色
     private Boolean active; //  1 激活状态 or 0 非激活
 }
