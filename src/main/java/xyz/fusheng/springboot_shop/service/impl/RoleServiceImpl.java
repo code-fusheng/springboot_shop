@@ -26,7 +26,7 @@ import java.util.List;
 @Service
 public class RoleServiceImpl implements RoleService {
 
-    @Resource
+    @Autowired
     private RoleRepository roleRepository;
 
     @Autowired
@@ -35,7 +35,7 @@ public class RoleServiceImpl implements RoleService {
 
 
     @Override
-    public List<Role> buildRoleList() {
+    public List<Role> buildRolesList() {
         List<Role> roles = roleRepository.findAll();
         List<Right> rights = rightService.buildRightList();
         for (Role role : roles) {

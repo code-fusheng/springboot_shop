@@ -31,7 +31,7 @@ public class MenuServiceImpl implements MenuService {
     private MenuRepository menuRepository;
 
     @Override
-    public List<Menu> bulidMenuList() {
+    public List<Menu> buildMenuList() {
         List<Menu> menus = menuRepository.findAllByPid(0);
         List<Menu> all = menuRepository.findAll();
 

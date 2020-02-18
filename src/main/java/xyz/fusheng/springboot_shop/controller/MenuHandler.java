@@ -36,13 +36,12 @@ public class MenuHandler {
 
     @GetMapping("/menus")
     public List<Menu> menuList(){
-        return menuService.bulidMenuList();
+        return menuService.buildMenuList();
     }
 
     @GetMapping("/menus/findAll")
     public List<Menu> findAll(){
         return menuRepository.findAll();
     }
-
 
 }

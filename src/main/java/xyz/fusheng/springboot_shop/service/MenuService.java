@@ -16,6 +16,6 @@ import java.util.List;
 
 public interface MenuService {
 
-    List<Menu> bulidMenuList();
+    List<Menu> buildMenuList();
 
 }

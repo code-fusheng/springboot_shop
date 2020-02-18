@@ -10,10 +10,10 @@
  */
 package xyz.fusheng.springboot_shop.controller;
 
-import org.apache.tomcat.jni.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import xyz.fusheng.springboot_shop.entity.Role;
+import xyz.fusheng.springboot_shop.entity.User;
 import xyz.fusheng.springboot_shop.repository.RoleRepository;
 import xyz.fusheng.springboot_shop.service.RoleService;
 
@@ -29,14 +29,14 @@ public class RoleHandler {
     @Autowired
     private RoleService roleService;
 
-    // @GetMapping("/findAll")
-    // public List<Role> findAll(){
-    //     return roleRepository.findAll();
-    // }
-
     @GetMapping("/roles")
     public List<Role> findAll(){
-        return roleService.buildRoleList();
+        return roleService.buildRolesList();
+    }
+
+    @GetMapping("/roles/findById/{id}")
+    public Role findById(@PathVariable("id") Integer id){
+        return roleRepository.findById(id).get();
     }
 
 
@@ -50,12 +50,18 @@ public class RoleHandler {
         }
     }
 
+    @PutMapping("/roles/edit")
+    public String update(@RequestBody Role role) {
+        Role result = roleRepository.save(role);
+        if (result != null) {
+            return "success";
+        } else {
+            return "error";
+        }
+    }
+
     @DeleteMapping("/roles/deleteById/{id}")
     public void deleteByID(@PathVariable("id") Integer id) {
         roleRepository.deleteById(id);
     }
-
-
-
-
 }

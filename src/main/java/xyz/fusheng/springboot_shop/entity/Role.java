@@ -25,6 +25,7 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;       // 角色名
+    @Column(name = "r_desc")
     private String desc;       // 角色描述
     private String rid;        // 权限id
 

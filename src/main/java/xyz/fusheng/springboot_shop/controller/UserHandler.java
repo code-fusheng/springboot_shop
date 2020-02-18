@@ -93,14 +93,8 @@ public class UserHandler {
 
     /*-----------------------------------------------------------------------*/
 
-
     @GetMapping("/findAll")
     public List<User> findAll(){
         return userRepository.findAll();
     }
-
-
-
-
-
 }
